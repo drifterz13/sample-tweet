@@ -6,6 +6,7 @@ const db = require('./models')
 const errorHandler = require('./handlers/error')
 const authRoutes = require('./routes/auth')
 const messageRoutes = require('./routes/message')
+const resetRoutes = require('./routes/reset')
 const { checkLoggedIn, checkAuth } = require('./middlewares/auth')
 
 const PORT = 8000 || process.env.PORT
@@ -19,6 +20,7 @@ app.use('/api/user/:id/message',
   checkAuth,
   messageRoutes
 )
+app.use('/api/user', resetRoutes)
 
 app.use('/api/messages', checkLoggedIn, async function (req, res, next) {
   try {
