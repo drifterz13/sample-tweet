@@ -42,19 +42,10 @@ userSchema.pre('save', async function (next) {
 
 userSchema.methods.comparePassword = async function (password, next) {
   try {
-    const results = await bcrypt.compare(password, this.password)
-    if (!resuts) {
-      return next({
-        status: 401,
-        message: 'Invalid password'
-      })
-    }
-    return next(results)
+    let isMatch = await bcrypt.compare(password, this.password)
+    return isMatch
   } catch (err) {
-    return next({
-      status: 401,
-      message: 'Invalid password'
-    })
+    next(err)
   }
 }
 

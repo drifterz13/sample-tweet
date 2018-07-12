@@ -41,7 +41,9 @@ exports.signup = async function (req, res, next) {
 exports.signin = async function (req, res, next) {
   try {
     let user = await db.User.findOne({ email: req.body.email });
-    if (user && user.comparePassword(user.password)) {
+    const compared = await user.comparePassword(req.body.password)
+    console.log(compared)
+    if (user && compared) {
       const { username, email, profileImageUrl, _id } = user;
       const token = jwt.sign(
         {
