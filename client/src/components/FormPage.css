@@ -1,0 +1,44 @@
+.form-page {
+  height: 100vh;
+  width: 100%;
+  padding-top: 10px;
+  background-color: #e6ecf0;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  background-color: #fff;
+  margin: 0 18vw;
+  padding-top: 15px;
+}
+
+form .form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 50px 0 0;
+  margin: 0 15vw;
+}
+
+form .form-group input {
+  box-shadow: none;
+}
+
+form:first-child button {
+  margin: 10px 15vw;
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100px;
+  background-color: #f5f8fa;
+}
+
+.footer-wrapper span {
+  margin: 0 15vw;
+  font-size: 14px;
+}

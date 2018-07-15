@@ -3,6 +3,13 @@ const jwt = require('jsonwebtoken')
 
 exports.signup = async function (req, res, next) {
   try {
+    const { username, email, password, profileImageUrl } = req.body
+    if (!username || !email || !password) {
+      return next({
+        status: 400,
+        message: 'Please, correct the form'
+      })
+    }
     let foundUser = await db.User.findOne({ email: req.body.email })
     if (foundUser) {
       return next({
@@ -11,7 +18,6 @@ exports.signup = async function (req, res, next) {
       })
     } else {
       let user = await db.User.create(req.body)
-      const { username, email, profileImageUrl } = req.body
       const token = jwt.sign(
         {
           username,

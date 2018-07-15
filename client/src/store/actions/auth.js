@@ -1,5 +1,5 @@
 import { LOGGED_IN } from '../../actionType'
-import { apiCall } from '../../services/api'
+import axios from 'axios'
 import { addError, removeError } from '../actions/error'
 
 const loggedIn = (user) => {
@@ -12,7 +12,7 @@ const loggedIn = (user) => {
 export const auth = (data, type) => {
   const config = { method: 'post', url: `/api/auth/${type}`, data }
   return dispatch => {
-    return apiCall(config).then(({data: user}) => {
+    return axios(config).then(({data: user}) => {
       dispatch(removeError())
       dispatch(loggedIn(user))
     }).catch(err => {

@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import Nav from './Nav'
 import './Home.css'
 
 const Home = () => (
   <Fragment>
-    <Nav />
     <div className='homepage'>
       <div className='left-side'>
         <span>
@@ -21,6 +19,7 @@ const Home = () => (
           Join conversation
         </span>
       </div>
+
       <div className='right-side'>
         <div className='twitter-login icon has-text-info'>
           <i className='fab fa-twitter fa-lg'></i>
