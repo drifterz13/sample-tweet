@@ -5,7 +5,7 @@ const initialState = {
   user: null
 }
 
-function users(state = initialState, action) {
+function user(state = initialState, action) {
   switch (action.type) {
     case LOGGED_IN :
       return {...state, isAuthenticated: true, user: {...action.user}}
@@ -14,4 +14,4 @@ function users(state = initialState, action) {
   }
 }
 
-export default users
+export default user

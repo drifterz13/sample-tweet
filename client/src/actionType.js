@@ -1,1 +1,6 @@
 export const LOGGED_IN = 'LOGGED_IN'
+export const ADD_ERROR = 'ADD_ERROR'
+export const REMOVE_ERROR = 'REMOVE_ERROR'
+export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES'
+export const DELETE_MESSAGE = 'DELETE_MESSAGE'
+export const ADD_MESSAGE = 'ADD_MESSAGE'
