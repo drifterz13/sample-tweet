@@ -58,6 +58,7 @@ class FormPage extends React.Component {
               <label className='label' htmlFor='email'>Email: </label>
               <input
                 id='email'
+                type='email'
                 className={classNameInput}
                 name='email'
                 value={email}
@@ -68,6 +69,7 @@ class FormPage extends React.Component {
               <label className='label' htmlFor='password'>Password: </label>
               <input
                 id='password'
+                type='password'
                 className={classNameInput}
                 name='password'
                 value={password}
@@ -80,6 +82,7 @@ class FormPage extends React.Component {
                   <label className='label' htmlFor='username'>Username: </label>
                   <input
                     id='username'
+                    type='text'
                     className={classNameInput}
                     name='username'
                     value={username}
@@ -90,6 +93,7 @@ class FormPage extends React.Component {
                   <label className='label' htmlFor='profileImageUrl'>Image URL: </label>
                   <input
                     id='profileImageUrl'
+                    type='text'
                     className={classNameInput}
                     name='profileImageUrl'
                     value={profileImageUrl}

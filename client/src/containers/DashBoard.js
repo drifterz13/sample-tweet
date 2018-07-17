@@ -2,30 +2,50 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchMessage } from '../store/actions/message'
+import Tweet from '../components/Tweet'
+import './DashBoard.css'
 
 class DashBoard extends React.Component {
-  constructor(props) {
-    super(props)
 
-    this.state = {
-      tweets: []
-    }
-  
+  state = {
+    tweets: [],
+    isLoaded: false,
+    error: null
   }
 
   componentDidMount() {
     const { info } = this.props.user
-    if (info && Object.keys(info).length > 0) {
-      this.props.fetchMessage(info.token).then(tweets => console.log('all tweets', this.props.messages))
-    }
+    this.props.fetchMessage(info.token)
+      .then(() => {
+        this.setState({ tweets: this.props.messages, isLoaded: true })
+      })
+      .catch(error => this.setState({ error, isLoaded: true }));
   }
 
   render() {
-    return (
-      <h1>DashBoard Page.</h1>
-    )
+    const { error, isLoaded, tweets } = this.state
+    const { username } = this.props.user.info
+    if (error) {
+      return <div>Error: {error.message}</div>
+    } else if (!isLoaded) {
+      return <div>Loading ...</div>
+    } else {
+      return (
+        <div className='container'>
+          <div className='dashboard'>
+            <div className='aside-dashboard'>
+              aside
+            </div>
+            <div className='main-dashboard'>
+              {tweets.map(tweet => (
+                <Tweet key={tweet._id} tweet={tweet.text} username={username} />
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
   }
-
 }
 
 function mapStateToProps(state) {
@@ -36,8 +56,12 @@ function mapStateToProps(state) {
 }
 
 DashBoard.propTypes = {
+  user: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
+    info: PropTypes.object.isRequired
+  }).isRequired,
   fetchMessage: PropTypes.func.isRequired,
   messages: PropTypes.array
 }
 
-export default connect(mapStateToProps, {fetchMessage})(DashBoard)
+export default connect(mapStateToProps, { fetchMessage })(DashBoard)

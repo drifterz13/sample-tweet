@@ -1,0 +1,12 @@
+.dashboard {
+  display: flex;
+  margin-top: 40px;
+}
+
+.aside-dashboard {
+  flex-basis: 30%;
+}
+
+.main-dashboard {
+  flex-basis: 50%;
+}
