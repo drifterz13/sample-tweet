@@ -17,6 +17,7 @@ class FormPage extends React.Component {
   }
 
   handleSubmit = e => {
+    console.log('click')
     e.preventDefault()
     this.props.auth(this.state.user, this.props.type)
       .then(user => this.props.history.push('/dashboard'))
@@ -103,7 +104,9 @@ class FormPage extends React.Component {
               </Fragment>
             )}
 
-            <button type='submit' className="button is-info is-rounded">Submit</button>
+            <button type='submit' className="button is-info is-rounded">
+              Submit
+            </button>
           </form >
 
           <section className='footer-wrapper'>

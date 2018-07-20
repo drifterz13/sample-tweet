@@ -34,7 +34,11 @@ class DashBoard extends React.Component {
         <div className='container'>
           <div className='dashboard'>
             <div className='aside-dashboard'>
-              aside
+              <div className='media-content'>
+                <div className='box' style={{borderRadius: '0px'}}>
+                  aside
+                </div>
+              </div>
             </div>
             <div className='main-dashboard'>
               {tweets.map(tweet => (

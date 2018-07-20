@@ -16,8 +16,8 @@ export const auth = (data, type) => {
       dispatch(removeError())
       dispatch(loggedIn(user))
     }).catch(err => {
-      dispatch(addError(err.message))
-      return Promise.reject(err)
+      dispatch(addError(err.response.data.error.message))
+      return Promise.reject(err.response.data.error)
     })
   }
 }
