@@ -6,6 +6,15 @@ import { signout } from '../store/actions/auth'
 import '../assets/css/Nav.css'
 
 class Nav extends React.Component {
+  state = {
+    isAuthenticated: this.props.isAuthenticated
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.isAuthenticated !== this.props.isAuthenticated) {
+      this.setState({ isAuthenticated: this.props.isAuthenticated })
+    }
+  }
 
   render() {
     return (
@@ -13,20 +22,20 @@ class Nav extends React.Component {
         <div className='container'>
           <div className='navbar-menu'>
             <div className='navbar-start'>
-              {!this.props.isAuthenticated ? (
+              {!this.state.isAuthenticated ? (
                 <Link to='/' className='navbar-item'>
                   <i className='fas fa-home'></i>
                   Home
                 </Link>
               ): (
                 <Link to='/dashboard' className='navbar-item'>
-                  <i className="fab fa-twitter"></i>
+                  <i className='fab fa-twitter'></i>
                   Dashboard
                 </Link>
               )}
             </div>
             <div className='navbar-end'>
-              {!this.props.isAuthenticated ? (
+              {!this.state.isAuthenticated ? (
                 <Fragment>
                   <Link to='/signin' className='navbar-item'>
                     <i className='fas fa-sign-in-alt'></i>

@@ -85,7 +85,7 @@
   color: #1da1f2;
 }
 
-@media screen and (max-width: 1112px ) {
+@media screen and (max-width: 1200px ) {
   .dashboard {
     padding: 40px 0 0 35px;
   }

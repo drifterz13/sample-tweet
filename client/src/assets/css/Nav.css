@@ -20,3 +20,9 @@ a svg {
 .navbar-end {
   display: flex;
 }
+
+@media screen and (max-width: 1090px) {
+  .navbar-menu {
+    padding: .5rem 2rem;
+  }
+}

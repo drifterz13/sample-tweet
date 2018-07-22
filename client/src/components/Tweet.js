@@ -1,8 +1,19 @@
 import React from 'react'
 
+const boxStyle = {
+  padding: '10px 0 10px 20px',
+  borderRadius: '0px',
+  marginBottom: '0px'
+}
+
+const navStyle = {
+  borderBottom: 'none',
+  marginTop: '12px'
+}
+
 const Tweet = ({ tweet, username, profileImageUrl }) => {
   return (
-    <div className='box' style={{padding: '10px 0 10px 20px', borderRadius: '0px', marginBottom: '0px'}}>
+    <div className='box' style={boxStyle}>
       <article className='media'>
         <div style={{paddingTop: '5px'}} className='media-left'>
           <figure className='image is-48x48'>
@@ -23,7 +34,7 @@ const Tweet = ({ tweet, username, profileImageUrl }) => {
               </p>
             </div>
           </div>
-          <nav style={{borderBottom: 'none', marginTop: '12px'}} className="level is-mobile">
+          <nav style={navStyle} className="level is-mobile">
             <div className="level-left">
               <a className="level-item" aria-label="reply">
                 <span className="icon is-small">
