@@ -7,7 +7,6 @@ import DashBoard from './DashBoard'
 import WrongPage from '../components/WrongPage'
 import { withAuth } from '../hoc/withAuth'
 
-
 const Main = (props) => (
   <Fragment>
     <Nav />

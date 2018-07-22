@@ -11,10 +11,10 @@ exports.addMessage = async function (req, res, next) {
     foundUser.save()
     let foundMessage = await db.Message
       .findById({ _id: message._id })
-      .populate('user', {
-        username: true,
-        profileImageUrl: true
-      })
+      // .populate('user', {
+      //   username: true,
+      //   profileImageUrl: true
+      // })
     return res.status(200).json({ foundMessage })
   } catch (err) {
     return next(err)

@@ -16,6 +16,20 @@ class FormPage extends React.Component {
     errors: null
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.type !== this.props.type) {
+      this.setState({
+        user: {
+          username: '',
+          password: '',
+          email: '',
+          profileImageUrl: ''
+        },
+        errors: null
+      })
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     this.props.userAuth(this.state.user, this.props.type)
@@ -26,12 +40,13 @@ class FormPage extends React.Component {
       })
   }
 
+  
   handleChange = e => this.setState({
     ...this.state,
     user: { ...this.state.user, [e.target.name]: e.target.value }
   })
 
-  render() {
+  render() {   
     const divError = {
       padding: '5px',
       textAlign: 'center',
@@ -62,6 +77,7 @@ class FormPage extends React.Component {
                   name='email'
                   value={email}
                   onChange={this.handleChange}
+                  autoComplete='off'
                 />
               </div>
             </div>
@@ -90,6 +106,7 @@ class FormPage extends React.Component {
                       name='username'
                       value={username}
                       onChange={this.handleChange}
+                      autoComplete='off'
                     />
                   </div>
                 </div>
@@ -103,6 +120,7 @@ class FormPage extends React.Component {
                       name='profileImageUrl'
                       value={profileImageUrl}
                       onChange={this.handleChange}
+                      autoComplete='off'
                     />
                   </div>
                 </div>

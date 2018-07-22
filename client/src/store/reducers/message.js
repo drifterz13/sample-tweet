@@ -7,7 +7,7 @@ function messages (state = [], action) {
       const messages = action.messages
       return messages.map(message => ({...message}))
     case ADD_MESSAGE:
-      return state.push({...action.message})
+      return [...state, {...action.message}]
     case DELETE_MESSAGE:
       return state.filter(message => message._id !== action.id)
     default:

@@ -12,6 +12,12 @@
   margin-right: 10px;
 }
 
+.icon-wrap img {
+  border-radius: 50px;
+  height: 34px;
+  width: 38px;
+}
+
 .icon-wrap svg {
   padding: 5px;
   background-color: #ccd6dd;

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchMessage } from '../store/actions/message'
+import { fetchMessage, postMessage } from '../store/actions/message'
 import Tweet from '../components/Tweet'
 import TweetInput from '../components/TweetInput'
 import '../assets/css/DashBoard.css'
@@ -14,9 +14,20 @@ class DashBoard extends React.Component {
     error: null
   }
 
+  handleTweet(text) {
+    const { _id } = this.props.user.info
+    this.props.postMessage(_id, { text }).then(({ message }) => {
+      const tweets = this.state.tweets.map(tweet => ({ ...tweet }));
+      tweets.unshift(message)
+      this.setState({
+        ...this.state,
+        tweets
+      })
+    })
+  }
+
   componentDidMount() {
-    const { info } = this.props.user
-    this.props.fetchMessage(info.token)
+    this.props.fetchMessage()
       .then(() => {
         this.setState({ tweets: this.props.messages, isLoaded: true })
       })
@@ -25,7 +36,7 @@ class DashBoard extends React.Component {
 
   render() {
     const { error, isLoaded, tweets } = this.state
-    const { username } = this.props.user.info
+    const { username, profileImageUrl } = this.props.user.info
     if (error) {
       return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
@@ -33,18 +44,20 @@ class DashBoard extends React.Component {
     } else {
       return (
         <div className='dashboard'>
-          <div className='container' style={{display: 'flex'}}>
+          <div className='container' style={{ display: 'flex' }}>
             <div className='aside-dashboard'>
               <div className='media-content'>
                 <div className='box aside-top'>
                   <span>
-                    <i className='fas fa-camera'></i>
+                    {profileImageUrl ? (
+                      <img className='profile_img' src={profileImageUrl} alt={`imgof${username}`} />
+                    ) : <i className='fas fa-camera'></i>}
                   </span>
                 </div>
                 <div className='box aside-btm'>
                   <div className='aside-username'>
                     <h6 className='title is-6'>{username}</h6>
-                    <p style={{fontSize: '14px'}} className='subtitle is-6'>@{username}</p>
+                    <p style={{ fontSize: '14px' }} className='subtitle is-6'>@{username}</p>
                   </div>
                   <div className='wrap-btm'>
                     <div className='aside-tweet'>
@@ -60,9 +73,16 @@ class DashBoard extends React.Component {
               </div>
             </div>
             <div className='main-dashboard'>
-              <TweetInput />
+              <TweetInput 
+                profileImageUrl={profileImageUrl} 
+                tweet={(tweet) => this.handleTweet(tweet)} />
               {tweets.map(tweet => (
-                <Tweet key={tweet._id} tweet={tweet.text} username={username} />
+                <Tweet
+                  key={tweet._id}
+                  tweet={tweet.text}
+                  username={tweet.user.username || username}
+                  profileImageUrl={tweet.user.profileImageUrl}
+                />
               ))}
             </div>
           </div>
@@ -82,10 +102,27 @@ function mapStateToProps(state) {
 DashBoard.propTypes = {
   user: PropTypes.shape({
     isAuthenticated: PropTypes.bool.isRequired,
-    info: PropTypes.object.isRequired
+    info: PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      profileImageUrl: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+      iat: PropTypes.number,
+      token: PropTypes.string.isRequired,
+    }).isRequired
   }).isRequired,
   fetchMessage: PropTypes.func.isRequired,
-  messages: PropTypes.array
+  postMessage: PropTypes.func.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      profileImageUrl: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
+  )
 }
 
-export default connect(mapStateToProps, { fetchMessage })(DashBoard)
+export default connect(mapStateToProps, { fetchMessage, postMessage })(DashBoard)

@@ -1,12 +1,16 @@
 import React from 'react'
 
-const Tweet = ({ tweet, username }) => {
+const Tweet = ({ tweet, username, profileImageUrl }) => {
   return (
     <div className='box' style={{padding: '10px 0 10px 20px', borderRadius: '0px', marginBottom: '0px'}}>
       <article className='media'>
         <div style={{paddingTop: '5px'}} className='media-left'>
           <figure className='image is-48x48'>
-            <img className='is-rounded' src='https://picsum.photos/260' alt={`img-${username}`} />
+            <img 
+              className='is-rounded' 
+              // src='assets/img/dummy-user.png'
+              src={profileImageUrl ? profileImageUrl : `assets/img/dummy-user.png`} 
+              alt={`img-${username}`} />
           </figure>
         </div>
         <div>

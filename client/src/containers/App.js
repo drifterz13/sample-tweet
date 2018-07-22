@@ -13,6 +13,11 @@ if (localStorage.authToken) {
   store.dispatch(loggedIn({...user, token: localStorage.authToken}))
 }
 
+// window.onbeforeunload = () => {
+//   localStorage.removeItem('authToken')
+//   return undefined
+// }
+
 const App = () => (
   <Provider store={store}>
     <Router>

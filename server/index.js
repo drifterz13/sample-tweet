@@ -27,8 +27,16 @@ app.use('/api/reset_password/confirmation/:cf_id', confirmResetPassword)
 app.use('/api/messages', checkLoggedIn, async function (req, res, next) {
   try {
     let messages = await db.Message.find()
+      .sort({ createdAt: -1 })
+      .select('_id text user')
+      .populate('user', {
+        username: true,
+        profileImageUrl: true
+      })
     if (messages && messages.length > 0) {
       return res.status(200).json({ messages })
+    } else {
+      return res.status(200).json({messages: []})
     }
   } catch (err) {
     return next(err)
