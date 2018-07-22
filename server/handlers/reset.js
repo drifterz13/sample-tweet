@@ -4,14 +4,17 @@ const { setupTransport } = require('../mailer')
 
 exports.requestPassword = async function (req, res, next) {
   try {
-    const foundUser = await db.User.findById({ _id: req.params.id })
+    // const foundUser = await db.User.findById({ _id: req.params.id })
+    const foundUser = await db.User.findOne({ email: req.body.email })
     if (foundUser) {
       const newPassword = req.body.newPassword
-      const { _id, email } = foundUser
+      const { _id, email, username, profileImageUrl } = foundUser
       const confirmToken = await jwt.sign(
         {
           _id,
           email,
+          username,
+          profileImageUrl,
           newPassword
         },
         process.env.SECRET_KEY,
@@ -23,12 +26,12 @@ exports.requestPassword = async function (req, res, next) {
       let transporter = setupTransport()
   
       let mailOptions = {
-        from: '"Node Mailer"',
-        to: 'mixmyxxe@gmail.com',
+        from: '"Node Mailer by Sample twitter"',
+        to: req.body.email || 'mixmyxxe@gmail.com',
         subject: 'Reset password request',
         text: ``,
         html: `<h3>Click this link to confirm your new password request</h3> <hr> 
-        <a>http://localhost:8000/api/reset_password/confirmation/${confirmToken}</a>`
+        <a>http://localhost:8000/api/user/reset_password/confirmation/${confirmToken}</a>`
       };
   
       transporter.sendMail(mailOptions, (error, info) => {
@@ -59,10 +62,7 @@ exports.confirmResetPassword = async function (req, res, next) {
       const { email, _id } = foundUser
       foundUser.password = mailDecoded.newPassword
       foundUser.save()
-      return res.status(200).json({
-        _id,
-        email
-      })
+      return res.redirect('http://localhost:3000/')
     } else {
       return next({
         status: 404,

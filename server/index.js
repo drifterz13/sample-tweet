@@ -7,7 +7,6 @@ const errorHandler = require('./handlers/error')
 const authRoutes = require('./routes/auth')
 const messageRoutes = require('./routes/message')
 const resetRoutes = require('./routes/reset')
-const { confirmResetPassword } = require('./handlers/reset')
 const { checkLoggedIn, checkAuth } = require('./middlewares/auth')
 
 const PORT = 8000 || process.env.PORT
@@ -21,8 +20,7 @@ app.use('/api/user/:id/message',
   checkAuth,
   messageRoutes
 )
-app.use('/api/user/reset_password/:id', checkLoggedIn, checkAuth, resetRoutes)
-app.use('/api/reset_password/confirmation/:cf_id', confirmResetPassword)
+app.use('/api/user/reset_password', resetRoutes)
 
 app.use('/api/messages', checkLoggedIn, async function (req, res, next) {
   try {

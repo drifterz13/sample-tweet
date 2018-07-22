@@ -8,7 +8,7 @@ const Tweet = ({ tweet, username, profileImageUrl }) => {
           <figure className='image is-48x48'>
             <img 
               className='is-rounded' 
-              // src='assets/img/dummy-user.png'
+              style={{width: '48px', height: '48px'}}
               src={profileImageUrl ? profileImageUrl : `assets/img/dummy-user.png`} 
               alt={`img-${username}`} />
           </figure>

@@ -13,10 +13,17 @@ class Nav extends React.Component {
         <div className='container'>
           <div className='navbar-menu'>
             <div className='navbar-start'>
-              <Link to='/' className='navbar-item'>
-                <i className='fas fa-home'></i>
-                Home
-              </Link>
+              {!this.props.isAuthenticated ? (
+                <Link to='/' className='navbar-item'>
+                  <i className='fas fa-home'></i>
+                  Home
+                </Link>
+              ): (
+                <Link to='/dashboard' className='navbar-item'>
+                  <i className="fab fa-twitter"></i>
+                  Dashboard
+                </Link>
+              )}
             </div>
             <div className='navbar-end'>
               {!this.props.isAuthenticated ? (

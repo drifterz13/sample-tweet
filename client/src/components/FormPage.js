@@ -137,7 +137,7 @@ class FormPage extends React.Component {
               <p>Are you new in twitter ? <Link to='/signup'>Signup now >></Link></p>
             </span>
             <span>
-              <Link to='/'>Forget Password ?</Link>
+              <Link to='/reset'>Forget Password ?</Link>
             </span>
           </section>
         </div>
