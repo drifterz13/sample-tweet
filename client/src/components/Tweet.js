@@ -1,8 +1,6 @@
 import React from 'react'
 
 const Tweet = ({ tweet, username }) => {
-
-  console.log('Tweet', tweet, username)
   return (
     <div className='box' style={{padding: '10px 0 10px 20px', borderRadius: '0px', marginBottom: '0px'}}>
       <article className='media'>

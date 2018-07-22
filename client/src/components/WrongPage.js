@@ -1,5 +1,5 @@
 import React from 'react'
-import './WrongPage.css'
+import '../assets/css/WrongPage.css'
 
 const WrongPage = () => (
   <div className='container'>

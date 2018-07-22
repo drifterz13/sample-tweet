@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { auth } from '../store/actions/auth'
-import './FormPage.css'
+import { userAuth } from '../store/actions/auth'
+import '../assets/css/FormPage.css'
 
 class FormPage extends React.Component {
   state = {
@@ -13,17 +13,16 @@ class FormPage extends React.Component {
       email: '',
       profileImageUrl: ''
     },
-    errors: {}
+    errors: null
   }
 
   handleSubmit = e => {
-    console.log('click')
     e.preventDefault()
-    this.props.auth(this.state.user, this.props.type)
+    this.props.userAuth(this.state.user, this.props.type)
       .then(user => this.props.history.push('/dashboard'))
       .catch(err => {
         const { message } = this.props.error;
-        this.setState({ ...this.state, errors: { ...this.state.errors, message } })
+        this.setState({ ...this.state, errors: {message} })
       })
   }
 
@@ -38,68 +37,74 @@ class FormPage extends React.Component {
       textAlign: 'center',
       fontSize: '14px'
     }
-    const classNameInput = Object.keys(this.state.errors).length > 0 ?
-      'input is-small is-danger' : 'input is-small'
-    const { username, password, email, profileImageUrl } = this.state.user
     const { errors } = this.state;
+    const styleInput = errors ? 'input is-small is-danger' : 'input is-small'
+    const { username, password, email, profileImageUrl } = this.state.user
 
     return (
       <div className='form-page'>
         <div className='form-wrapper'>
-          <form className='field' onSubmit={this.handleSubmit}>
-            <div className='form-group'>
-              {Object.keys(errors).length > 0 && (
-                <div
-                  style={divError}
+          <form onSubmit={this.handleSubmit}>
+            <div className='field form-group'>
+              {errors && (
+                <div style={divError}
                   className='notification is-danger'>
                   {errors.message}
                 </div>
               )}
 
               <label className='label' htmlFor='email'>Email: </label>
-              <input
-                id='email'
-                type='email'
-                className={classNameInput}
-                name='email'
-                value={email}
-                onChange={this.handleChange}
-              />
+              <div className='control'>
+                <input
+                  id='email'
+                  type='email'
+                  className={styleInput}
+                  name='email'
+                  value={email}
+                  onChange={this.handleChange}
+                />
+              </div>
             </div>
-            <div className='form-group'>
+            <div className='field form-group'>
               <label className='label' htmlFor='password'>Password: </label>
-              <input
-                id='password'
-                type='password'
-                className={classNameInput}
-                name='password'
-                value={password}
-                onChange={this.handleChange}
-              />
+              <div className='control'>
+                <input
+                  id='password'
+                  type='password'
+                  className={styleInput}
+                  name='password'
+                  value={password}
+                  onChange={this.handleChange}
+                />
+              </div>
             </div>
             {this.props.type === 'signup' && (
               <Fragment>
-                <div className='form-group'>
+                <div className='field form-group'>
                   <label className='label' htmlFor='username'>Username: </label>
-                  <input
-                    id='username'
-                    type='text'
-                    className={classNameInput}
-                    name='username'
-                    value={username}
-                    onChange={this.handleChange}
-                  />
+                  <div className='control'>
+                    <input
+                      id='username'
+                      type='text'
+                      className={styleInput}
+                      name='username'
+                      value={username}
+                      onChange={this.handleChange}
+                    />
+                  </div>
                 </div>
-                <div className='form-group'>
+                <div className='field form-group'>
                   <label className='label' htmlFor='profileImageUrl'>Image URL: </label>
-                  <input
-                    id='profileImageUrl'
-                    type='text'
-                    className={classNameInput}
-                    name='profileImageUrl'
-                    value={profileImageUrl}
-                    onChange={this.handleChange}
-                  />
+                  <div className='control'>
+                    <input
+                      id='profileImageUrl'
+                      type='text'
+                      className={styleInput}
+                      name='profileImageUrl'
+                      value={profileImageUrl}
+                      onChange={this.handleChange}
+                    />
+                  </div>
                 </div>
               </Fragment>
             )}
@@ -138,11 +143,11 @@ FormPage.propTypes = {
   error: PropTypes.shape({
     message: PropTypes.string
   }).isRequired,
-  auth: PropTypes.func.isRequired,
+  userAuth: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired
 }
 
-export default connect(mapStateToProps, { auth })(FormPage)
+export default connect(mapStateToProps, { userAuth })(FormPage)

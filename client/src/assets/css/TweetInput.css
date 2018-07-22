@@ -1,0 +1,20 @@
+.input-wrap {
+  padding: 10px 20px;
+  background-color: #e8f5fd;
+  margin-bottom: 35px;
+}
+
+.input-wrap .control {
+  display: flex;
+}
+
+.icon-wrap {
+  margin-right: 10px;
+}
+
+.icon-wrap svg {
+  padding: 5px;
+  background-color: #ccd6dd;
+  font-size: 34px;
+  border-radius: 50px;
+}

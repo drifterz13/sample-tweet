@@ -9,3 +9,14 @@ a svg {
   color: #1496ed;
   margin-right: 5px;
 }
+
+.navbar-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: none;
+}
+
+.navbar-end {
+  display: flex;
+}

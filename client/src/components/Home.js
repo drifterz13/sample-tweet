@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import './Home.css'
+import '../assets/css/Home.css'
 
 const Home = () => (
   <Fragment>

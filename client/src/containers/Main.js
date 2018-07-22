@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import Home from '../components/Home'
-import Nav from '../components/Nav'
+import Nav from './Nav'
 import FormPage from '../components/FormPage'
 import DashBoard from './DashBoard'
 import WrongPage from '../components/WrongPage'

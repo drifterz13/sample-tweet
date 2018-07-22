@@ -33,7 +33,6 @@ exports.requestPassword = async function (req, res, next) {
   
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-          console.log(error)
           return next({
             status: 400,
             message: 'Invalid credentials.'

@@ -9,6 +9,8 @@ const messageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
+}, {
+  timestamps: true
 })
 
 messageSchema.pre('remove', async function(req, res, next) {

@@ -1,4 +1,5 @@
 export const LOGGED_IN = 'LOGGED_IN'
+export const LOGGED_OUT = 'LOGGED_OUT'
 export const ADD_ERROR = 'ADD_ERROR'
 export const REMOVE_ERROR = 'REMOVE_ERROR'
 export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES'
