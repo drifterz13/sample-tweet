@@ -25,7 +25,7 @@ exports.signup = async function (req, res, next) {
           profileImageUrl,
           _id: user._id
         },
-        process.env.SECRET_KEY,
+        process.env.SECRET_KEY || 'secrets',
       )
       return res.json({
         username,
@@ -57,7 +57,7 @@ exports.signin = async function (req, res, next) {
           profileImageUrl,
           _id
         },
-        process.env.SECRET_KEY
+        process.env.SECRET_KEY || 'secrets'
       )
       return res.json({
         username,

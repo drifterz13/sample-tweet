@@ -17,7 +17,7 @@ exports.requestPassword = async function (req, res, next) {
           profileImageUrl,
           newPassword
         },
-        process.env.SECRET_KEY,
+        process.env.SECRET_KEY || 'secret',
         {
           expiresIn: '1h'
         }
@@ -38,7 +38,7 @@ exports.requestPassword = async function (req, res, next) {
         if (error) {
           return next({
             status: 400,
-            message: 'Invalid credentials.'
+            message: error || 'Invalid credentials.'
           })
         }
         return res.status(200).json({})
@@ -59,7 +59,6 @@ exports.confirmResetPassword = async function (req, res, next) {
     const mailDecoded = await jwt.decode(confirmToken)
     const foundUser = await db.User.findById({ _id: mailDecoded._id })
     if (foundUser) {
-      const { email, _id } = foundUser
       foundUser.password = mailDecoded.newPassword
       foundUser.save()
       return res.redirect('http://localhost:3000/')
