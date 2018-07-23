@@ -32,12 +32,12 @@
   box-shadow: none;
 }
 
-.aside-top span svg {
+.aside-top span i {
   padding: 19px;
   margin-left: -9px;
   color: #fff;
   z-index: 1;
-  font-size: 70px;
+  font-size: 24px;
   border: 3px solid #fff;
   border-radius: 50px;
   position: relative;
@@ -58,7 +58,7 @@
 }
 
 .aside-username {
-  padding: 0 0 5px 30px;
+  padding: 0 0 5px 5px;
 }
 
 .aside-username h6, .aside-username p {
