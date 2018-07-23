@@ -18,9 +18,10 @@
   width: 38px;
 }
 
-.icon-wrap svg {
+.icon-wrap i {
   padding: 5px;
   background-color: #ccd6dd;
-  font-size: 34px;
+  font-size: 25px;
+  /* font-size: 34px; */
   border-radius: 50px;
 }

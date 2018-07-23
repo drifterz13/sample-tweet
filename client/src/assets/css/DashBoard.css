@@ -1,8 +1,8 @@
 .dashboard {
   padding-top: 40px;
   background-color: #e6ecf0;
-  /* height: 100%; */
-  height: 100vh;
+  height: 100%;
+  /* height: 100vh; */
 }
 
 .aside-dashboard {
@@ -88,7 +88,7 @@
 
 @media screen and (max-width: 1200px ) {
   .dashboard {
-    padding: 40px 0 0 35px;
+    padding: 40px 0 40px 35px;
   }
   .aside-dashboard {
     margin-right: 10px;
