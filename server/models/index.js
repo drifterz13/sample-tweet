@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 mongoose.set('debug', true)
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost:27017/tweet', {
+mongoose.connect('mongodb://drifterz13:dsp41313@ds253831.mlab.com:53831/drifterz13', {
   useNewUrlParser: true
 })
 
