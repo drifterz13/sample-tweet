@@ -1,32 +1,35 @@
-import React from 'react'
+import React from "react";
 
 const boxStyle = {
-  padding: '10px 0 10px 20px',
-  borderRadius: '0px',
-  marginBottom: '0px'
-}
+  padding: "10px 0 10px 20px",
+  borderRadius: "0px",
+  marginBottom: "0px"
+};
 
 const navStyle = {
-  borderBottom: 'none',
-  marginTop: '12px'
-}
+  borderBottom: "none",
+  marginTop: "12px"
+};
 
 const Tweet = ({ tweet, username, profileImageUrl }) => {
   return (
-    <div className='box' style={boxStyle}>
-      <article className='media'>
-        <div style={{paddingTop: '5px'}} className='media-left'>
-          <figure className='image is-48x48'>
-            <img 
-              className='is-rounded' 
-              style={{width: '48px', height: '48px'}}
-              src={profileImageUrl ? profileImageUrl : `assets/img/dummy-user.png`} 
-              alt={`img-${username}`} />
+    <div className="box" style={boxStyle}>
+      <article className="media">
+        <div style={{ paddingTop: "5px" }} className="media-left">
+          <figure className="image is-48x48">
+            <img
+              className="is-rounded"
+              style={{ width: "48px", height: "48px" }}
+              src={
+                profileImageUrl ? profileImageUrl : `assets/img/dummy-user.png`
+              }
+              alt={`img-${username}`}
+            />
           </figure>
         </div>
         <div>
-          <div className='media-content'>
-            <div className='content'>
+          <div className="media-content">
+            <div className="content">
               <p>
                 <strong>{username}</strong> <small>@{username}</small>
                 <br />
@@ -56,7 +59,7 @@ const Tweet = ({ tweet, username, profileImageUrl }) => {
         </div>
       </article>
     </div>
-  )
-}
+  );
+};
 
-export default Tweet
+export default Tweet;
